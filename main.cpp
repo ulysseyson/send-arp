@@ -12,7 +12,7 @@ void usage() {
 }
 
 int main(int argc, char* argv[]) {
-	if (argc != 4) {
+	if (argc < 4 || argc % 2 != 0) {
 		usage();
 		return -1;
 	}
