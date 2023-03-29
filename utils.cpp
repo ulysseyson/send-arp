@@ -49,15 +49,17 @@ void sendARPPacket(pcap_t* handle, Mac& eth_dmac, Mac& eth_smac, Mac& arp_smac, 
 	if (res != 0) {
 		fprintf(stderr, "pcap_sendpacket return %d error=%s\n", res, pcap_geterr(handle));
 	}
+    cout << "apr packet send done !";
 }
 
 void getSenderInfo(pcap_t* handle, Mac& sender_mac, Ip& sender_ip, Mac& attacker_mac, Ip& attacker_ip){
     Mac eth_broadcast = Mac("ff:ff:ff:ff:ff:ff");
     Mac arp_unknown = Mac("00:00:00:00:00:00");
+    cout  << "aaa: " << string(sender_ip);
     // send normal arp packet attacker -> sender
     // don't know sender's mac so set it to broadcast option
     sendARPPacket(handle, eth_broadcast, attacker_mac, attacker_mac, attacker_ip, arp_unknown, sender_ip, true);
-
+    
     while(true){
 		struct pcap_pkthdr* header;
 		const u_char* packet;
